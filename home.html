@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fit Your Music</title>
+
+  <link rel="stylesheet" media="screen" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+</head>
+<body>
+
+<div id="particles-js">
+		<div class="login">
+            <div class="pick-top">
+                Pick your song!
+            </div>
+            <!-- Music list -->
+            <!-- pop blue classic country electronic jazz roc  -->
+            <div class="pick-button"; id="Blue">
+                Blue
+            </div>
+            <div class="pick-button">
+                Classical
+            </div>
+            <div class="pick-button">
+                Country
+            </div>
+            <div class="pick-button">
+                Electronic
+            </div>
+            <div class="pick-button">
+                Jazz
+            </div>
+            <div class="pick-button">
+                Pop
+            </div>
+            <div class="pick-button">
+                Rock
+            </div>
+
+
+		</div>
+		<div class="sk-rotating-plane"></div>
+</div>
+
+<!-- scripts -->
+<script src="js/particles.js"></script>
+<script src="js/app.js"></script>
+
+<script>
+    document.getElementById("Blue").onclick = function() {myFunction()};
+
+    function myFunction() {
+        document.getElementById("Blue").innerHTML = "YOU CLICKED ME!";
+    }
+</script>
+
+
+</body>
+</html>
