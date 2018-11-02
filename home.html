@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Running Saftey Plus Home</title>
+    <!-- Google Map -->
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+  <link rel="stylesheet" media="screen" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+</head>
+<body>
+
+<div id="particles-js">
+		<div class="login">
+            <div id="map"></div>
+		</div>
+		<div class="sk-rotating-plane"></div>
+</div>
+<!-- Particles -->
+<script src="js/particles.js"></script>
+<script src="js/app.js"></script>
+<!-- Map -->
+<script src="js/map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEgkM9JeygSHP6jSqQBsCuYdwqXF868z0&callback=initMap" async defer></script>
+
+<script>
+    //example, no actually function
+    document.getElementById("Blue").onclick = function() {myFunction()};
+
+    function myFunction() {
+        document.getElementById("Blue").innerHTML = "YOU CLICKED ME!";
+    }
+</script>
+
+
+</body>
+</html>
