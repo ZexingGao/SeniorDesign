@@ -34,3 +34,16 @@ document.querySelector(".login-button").onclick = function(){
     },1000)
 
 }
+
+document.querySelector(".signup-button").onclick = function(){
+    addClass(document.querySelector(".login"), "active")
+    setTimeout(function(){
+        addClass(document.querySelector(".sk-rotating-plane"), "active")
+        document.querySelector(".login").style.display = "none"
+    },50)
+    setTimeout(function(){
+        removeClass(document.querySelector(".login"), "active")
+        removeClass(document.querySelector(".sk-rotating-plane"), "active")
+        window.location.href='signup.html';
+    },1000)
+}
