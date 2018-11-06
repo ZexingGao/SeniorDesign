@@ -35,15 +35,16 @@ document.querySelector(".login-button").onclick = function(){
 
 }
 
-document.querySelector(".signup-button").onclick = function(){
-    addClass(document.querySelector(".login"), "active")
+document.querySelector(".newmember-button").onclick = function(){
     setTimeout(function(){
-        addClass(document.querySelector(".sk-rotating-plane"), "active")
-        document.querySelector(".login").style.display = "none"
-    },50)
-    setTimeout(function(){
-        removeClass(document.querySelector(".login"), "active")
-        removeClass(document.querySelector(".sk-rotating-plane"), "active")
         window.location.href='signup.html';
     },1000)
 }
+
+//button is not working currently
+document.querySelector(".signup-button").onclick = function(){
+    setTimeout(function(){
+        window.location.href='home.html';
+    },1000)
+}
+
