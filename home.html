@@ -29,6 +29,28 @@
 		<div class="login">
             <div id="map"></div>
 		</div>
+    <button id = 'test_message' type="button" onclick = "message_function()">
+        send text
+        <script >
+            function message_function() {
+                document.getElementById("test_message").style.color = "red";
+
+                //Twilio part
+                const accountSid = 'AC89b77c7c958d00674ce7b94e94f4f431';
+                const authToken = '5b5e7ae18fed283255ad007c82600226';
+                const client = require('twilio')(accountSid, authToken);
+
+                client.messages
+                    .create({
+                        body: 'This test message! GPS location: xxx.xxx',
+                        from: '+16174874030',
+                        to: '+18572723466'
+                    })
+                    .then(message => console.log(message.sid))
+                    .done();
+            }
+        </script>
+    </button>
 		<div class="sk-rotating-plane"></div>
 </div>
 <!-- Particles -->
