@@ -34,3 +34,17 @@ document.querySelector(".login-button").onclick = function(){
     },1000)
 
 }
+
+document.querySelector(".newmember-button").onclick = function(){
+    setTimeout(function(){
+        window.location.href='signup.html';
+    },1000)
+}
+
+//button is not working currently
+document.querySelector(".signup-button").onclick = function(){
+    setTimeout(function(){
+        window.location.href='home.html';
+    },1000)
+}
+
