@@ -11,6 +11,7 @@ function SignIn() {
         //need to error check
 
         firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+            //Catch all errors with sign-in
             var errorCode = error.code;
             var errorMessage = error.message;
             if (errorCode == 'auth/wrong-password') {
@@ -34,6 +35,7 @@ function SignUp() {
     //error check?
 
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        //Catch all errors with sign-up
         var errorCode  = error.code;
         var errorMessage = error.message;
 
@@ -55,6 +57,7 @@ function SignUp() {
 
 //Initialize application every page load
 function initApp() {
+    //detects change in authentication state
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             var displayName = user.displayName;
