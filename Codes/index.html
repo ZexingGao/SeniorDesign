@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <style>
+        </style>
+</head>
+<body>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <div>
+        <h1>Remote Control Car Web App</h1>
+    </div>
+    <div class="container">
+        <div id=sub_container_1>
+            <p class="title">Moving Direction Control</p>
+
+            <button class="button" id="left">&#8678;</button> 
+            <button class="button" id="right">&#8680;</button>
+            <button class="button" id="forward">&#8679;</button>
+            <button class="button" id="backward">&#8681;</button>
+
+            <script>
+                // html web client socket
+                // send msg to server
+                var socket_web = io.connect('http://localhost:4000');
+                $('#forward').click(function () {
+                    socket_web.emit('message', 'f');
+                })
+                $('#backward').click(function () {
+                    socket_web.emit('message', 'b');
+                })
+                $('#left').click(function () {
+                    socket_web.emit('message', 'l');
+                })
+                $('#right').click(function () {
+                    socket_web.emit('message', 'r');
+                })
+            </script>
+
+            <div style="padding-bottom: 70px;"></div>
+            <p class="title">Secret Message Received From Beacons</p>
+            <table style="width:100%" class="instant_status" id="myTable">
+                    <tr>
+                        <th width=35%>Received Time</th>
+                        <th width=31%>Fobs ID</th>
+                        <th width=40%>Content</th> 
+                        </tr>
+            </table>
+        </div>
+
+        <div id=sub_container_2>
+            <p class="title">Live Monitoring</p>
+            <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/OOy764mDtiA" frameborder="0"
+            allowfullscreen></iframe> -->
+            <iframe width="560" height="315" src="http://192.168.1.144:8081" frameborder="0"
+            allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+
+        // table parameters
+        var time_arr=[];
+        var content_arr=[];
+        var id_arr=[];
+        var time;
+        var content;
+        var DB = {id:[1,2,3,4], content:['whizzer.bu','.edu/team-','quests/pri','mary/escap']};
+        var my_data=''; //actual msg str
+        var my_data_arr=[];
+
+        var ideal_str = 'whizzer.bu.edu/team-quests/primary/test0';
+
+        var socket = io();
+        var duplicate= {id:[1,2,3,4], content: [false, false, false, false]};
+        var data_id_arr=[];
+
+        socket.on('message',function(msg){
+
+            time = Object.keys(msg);
+            content = msg[Object.keys(msg)][0].Content;
+
+            time_arr.push(time);
+            content_arr.push(content);
+            
+            var table = document.getElementById("myTable");
+            var i;
+            //add table rows and update data in the table cells
+            for (i=0; i<DB.content.length; i++){
+                if (content===DB.content[i]){
+                    //  prevent duplicate
+                    if (time_arr.length>=0){
+                        if (duplicate.content[i]==true)
+                            duplicate.content[i]=true;
+                        else{
+                            var row = table.insertRow(1);
+                            var cell_1 = row.insertCell(0); // time
+                            var cell_2 = row.insertCell(1); // forb_id
+                            var cell_3 = row.insertCell(2); // Content
+                            cell_1.innerHTML = time;
+                            cell_2.innerHTML = DB.id[i];
+                            cell_3.innerHTML = content;
+                            duplicate.content[i]=true;
+                            my_data = my_data + content;
+                            data_id_arr.push(DB.id[i])
+                        }
+                    }
+                    // contatenate data already received
+                }
+            }
+            data_id_arr.sort()
+
+            // comparing data already received with the ideal data
+            if (data_id_arr.length == 4)
+            {
+                // auto direct to the ideal link
+                setTimeout(direct, 1000);
+            }
+        });
+
+        function direct(){
+            socket_web.emit('message', 's');
+            window.location.href = 'http://whizzer.bu.edu/team-quests/primary/escap';
+        }
+
+    </script>
+
+</body>
+<!-- <script src="move.js"></script> -->
+</html>

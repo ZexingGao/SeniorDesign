@@ -1,0 +1,93 @@
+h1{
+    padding-top: 60px;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+div.container{
+    /* border-style: solid;
+    border-color: grey; */
+    
+    width: 90%;
+    text-align: center;
+    position: relative;
+    margin: auto;
+}
+
+#sub_container_1{
+    padding-bottom: 30px;
+    margin:1%;
+    float: left;
+    /* border-style: solid;
+    border-color: grey; */
+    width:50%;
+}
+
+#sub_container_2{
+    padding-bottom: 50px;
+    margin:1%;
+    float:right;
+    width:45%;
+    /* border-style: solid;
+    border-color: grey; */
+}
+
+#msg{
+    padding-bottom: 50px;
+}
+
+.button {
+    padding: 15px 20px;
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: red;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    margin: 2%;
+  }
+  
+  .button:hover {background-color: #990033}
+  
+  .button:active {
+    background-color: #660066;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+p.title{
+    font-size: 17px;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+}
+
+td{
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
+
+
+table.instant_status{
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
+
+th{
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    color:black;
+}
+
+tr:hover {background-color:whitesmoke;}
