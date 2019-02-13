@@ -24,32 +24,24 @@
   <link rel="stylesheet" type="text/css" href="css/reset.css"/>
 </head>
 <body>
-
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 <div id="particles-js">
 		<div class="login">
             <div id="map"></div>
 		</div>
-    <button id = 'test_message' type="button" onclick = "message_function()">
-        send text
-        <script >
-            function message_function() {
-                document.getElementById("test_message").style.color = "red";
+   <button class="button" id="send_msg">send_msg</button> 
 
-                //Twilio part
-                const accountSid = 'AC89b77c7c958d00674ce7b94e94f4f431';
-                const authToken = '5b5e7ae18fed283255ad007c82600226';
-                const client = require('twilio')(accountSid, authToken);
-
-                client.messages
-                    .create({
-                        body: 'This test message! GPS location: xxx.xxx',
-                        from: '+16174874030',
-                        to: '+18572723466'
-                    })
-                    .then(message => console.log(message.sid))
-                    .done();
-            }
-        </script>
+       <script>
+                // html web client socket
+                // send msg to server
+                var socket_web = io.connect('http://localhost:4000');
+                $('#send_msg').click(function () {
+                    socket_web.emit('message', 'send_msg');
+                })
+               
+            </script>
+       
     </button>
 		<div class="sk-rotating-plane"></div>
 </div>
@@ -58,16 +50,18 @@
 <script src="js/app.js"></script>
 <!-- Map -->
 <script src="js/map.js"></script>
-<script src="js/send-sms.js"></script>
+  <script type="text/javascript" src="https://media.twiliocdn.com/sdk/js/client/v1.6/twilio.min.js"></script>
+    <!-- <script src="js/send-sms.js"></script> -->
+    <script src="js/send-cong.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEgkM9JeygSHP6jSqQBsCuYdwqXF868z0&callback=initMap" async defer></script>
 
 <script>
     //example, no actually function
-    document.getElementById("Blue").onclick = function() {myFunction()};
+    //document.getElementById("Blue").onclick = function() {myFunction()};
 
-    function myFunction() {
-        document.getElementById("Blue").innerHTML = "YOU CLICKED ME!";
-    }
+    //function myFunction() {
+    //    document.getElementById("Blue").innerHTML = "YOU CLICKED ME!";
+    //}
 </script>
 
 
