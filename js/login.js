@@ -19,32 +19,48 @@ function removeClass(ele, cls) {
         ele.className = newClass.replace(/^\s+|\s+$/g, '');
     }
 }
-document.querySelector(".login-button").onclick = function(){
-    addClass(document.querySelector(".login"), "active")
-    setTimeout(function(){
-        addClass(document.querySelector(".sk-rotating-plane"), "active")
-        document.querySelector(".login").style.display = "none"
-    },50)
-    setTimeout(function(){
-        removeClass(document.querySelector(".login"), "active")
-        removeClass(document.querySelector(".sk-rotating-plane"), "active")
-        document.querySelector(".login").style.display = "block"
-        alert("Login Success")
-        window.location.href='home.html';
-    },1000)
+
+
+//Sign In button Function
+function SignIn() {
+    var email = document.getElementById('user').value;
+    var password = document.getElementById('pass').value;
+
+    //need to error check
+
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == 'auth/wrong-password') {
+            alert('Wrong Password.');
+        }
+        else {
+            alert(errorMessage);
+        }
+        console.log(error);
+    });
 
 }
 
-document.querySelector(".newmember-button").onclick = function(){
-    setTimeout(function(){
-        window.location.href='signup.html';
-    },1000)
+function NewMem() {
+    window.location = 'signup.html';
 }
 
-//button is not working currently
-document.querySelector(".signup-button").onclick = function(){
-    setTimeout(function(){
-        window.location.href='home.html';
-    },1000)
+//Initialize application every page load
+function initApp() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            window.location ='home.html';
+        }
+        else {
+            //nothing for now?
+        }
+    });
+
+    document.getElementById('logbutt').addEventListener('click', SignIn, false);
+    document.getElementById('newbutt').addEventListener('click', NewMem, false);
 }
 
+window.onload = function() {
+    initApp();
+};
