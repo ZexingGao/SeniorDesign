@@ -2,10 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Running Saftey Plus</title>
+  <title>Running Safety Plus</title>
 
   <link rel="stylesheet" media="screen" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+
+	<!-- Firebase Set-up Links -->
+	<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-auth.js"></script>
+
+	<script>
+        var config = {
+            apiKey: "AIzaSyDcrEtw90SNSyKE2A-a3Ms0wpVWS7oYSBQ",
+            authDomain: "running-safety.firebaseapp.com",
+            databaseURL: "https://running-safety.firebaseio.com",
+            projectId: "running-safety",
+            storageBucket: "running-safety.appspot.com",
+            messagingSenderId: "611585924515"
+        };
+        firebase.initializeApp(config);
+	</script>
+
 </head>
 <body>
 
@@ -17,22 +35,22 @@
 			<div class="login-center clearfix">
 				<div class="login-center-img"><img src="img/name.png"/></div>
 				<div class="login-center-input">
-					<input type="text" name="" value="" placeholder="Please Enter Your Username" onfocus="this.placeholder=''" onblur="this.placeholder='Please Enter Your Username'"/>
+					<input id="user" type="text" name="" value="" placeholder="Please Enter Your Username" onfocus="this.placeholder=''" onblur="this.placeholder='Please Enter Your Username'"/>
 					<div class="login-center-input-text">Username</div>
 				</div>
 			</div>
 			<div class="login-center clearfix">
 				<div class="login-center-img"><img src="img/password.png"/></div>
 				<div class="login-center-input">
-					<input type="password" name=""value="" placeholder="Please Enter Your Password" onfocus="this.placeholder=''" onblur="this.placeholder='Please Enter Your Password'"/>
+					<input id="pass" type="password" name=""value="" placeholder="Please Enter Your Password" onfocus="this.placeholder=''" onblur="this.placeholder='Please Enter Your Password'"/>
 					<div class="login-center-input-text">Password</div>
 				</div>
 			</div>
 			<div class="login-button">
-				Login
+				<button id="logbutt"> Login </button>
 			</div>
 			<div class="newmember-button">
-				New Member?
+				<button id="newbutt"> New Member </button>
 			</div>
 		</div>
 		<div class="sk-rotating-plane"></div>

@@ -2,10 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Running Safety Sign up Page</title>
+    <title>Running Safety Sign up</title>
 
     <link rel="stylesheet" media="screen" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+
+    <!-- Firebase Set-up Links -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-auth.js"></script>
+
+    <script>
+        var config = {
+            apiKey: "AIzaSyDcrEtw90SNSyKE2A-a3Ms0wpVWS7oYSBQ",
+            authDomain: "running-safety.firebaseapp.com",
+            databaseURL: "https://running-safety.firebaseio.com",
+            projectId: "running-safety",
+            storageBucket: "running-safety.appspot.com",
+            messagingSenderId: "611585924515"
+        };
+        firebase.initializeApp(config);
+    </script>
+
 </head>
 <body>
 <div id="particles-js">
@@ -16,46 +34,72 @@
         </div>
         <div class="signup-center clearfix">
             <div class="signup-center-input">
-                <input type="text" name="" value="" placeholder="First Name" onfocus="this.placeholder=''" onblur="this.placeholder='First Name'"/>
-                <div class="signup-center-input-text">First Name</div>
-            </div>
-        </div>
-        <div class="signup-center clearfix">
-            <div class="signup-center-input">
-                <input type="text" name="" value="" placeholder="Last Name" onfocus="this.placeholder=''" onblur="this.placeholder='Last Name'"/>
+                <input id="name" type="text" name="" value="" placeholder="Name" onfocus="this.placeholder=''" onblur="this.placeholder='Name'"/>
                 <div class="signup-center-input-text">Last Name</div>
             </div>
         </div>
         <div class="signup-center clearfix">
             <div class="signup-center-input">
-                <input type="text" name="" value="" placeholder="Please Enter a Username" onfocus="this.placeholder=''" onblur="this.placeholder='Please Enter a Username'"/>
+                <input id="username" type="text" name="" value="" placeholder="Please Enter a Username" onfocus="this.placeholder=''" onblur="this.placeholder='Please Enter a Username'"/>
                 <div class="signup-center-input-text">Username</div>
             </div>
         </div>
         <div class="signup-center clearfix">
             <div class="signup-center-input">
-                <input type="password" name=""value="" placeholder="Please Enter a Password" onfocus="this.placeholder=''" onblur="this.placeholder='Please Enter a Password'"/>
-                <div class="signup-center-input-text">Password</div>
-            </div>
-        </div>
-        <div class="signup-center clearfix">
-            <div class="signup-center-input">
-                <input type="text" name="" value="" placeholder="Re-enter Password" onfocus="this.placeholder=''" onblur="this.placeholder='Re-enter Password'"/>
+                <input id="password" type="password" name=""value="" placeholder="Please Enter a Password" onfocus="this.placeholder=''" onblur="this.placeholder='Please Enter a Password'"/>
                 <div class="signup-center-input-text">Password</div>
             </div>
         </div>
         <div class="signup-button">
-            Sign up!
+            <button id="signbutt"> Sign-Up </button>
+        </div>
+        <div class="signup-button">
+            <button id="backbutt" onclick="history.back()"> Back to Sign-In </button>
         </div>
 
     </div>
     <div class="sk-rotating-plane"></div>
 </div>
 
+
+<!-- Javascript code -->
+<script>
+    //SignUp button function
+    function SignUp() {
+        var email = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        //error check?
+
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+            var errorCode  = error.code;
+            var errorMessage = error.message;
+
+            if(errorCode == 'auth/weak-password'){
+                alert('Password not valid');
+            }
+            else{
+                alert(errorMessage);
+            }
+            console.log(error);
+        });
+        alert('Successful Sign Up!')
+    }
+
+
+    //Initialize application every page load
+    function initApp() {
+        document.getElementById('signbutt').addEventListener('click', SignUp, false);
+    }
+
+    window.onload = function() {
+        initApp();
+    };
+</script>
+
+
 <!-- scripts -->
 <script src="js/particles.js"></script>
 <script src="js/app.js"></script>
-<script src="js/login.js"></script>
 
 </body>
 </html>
