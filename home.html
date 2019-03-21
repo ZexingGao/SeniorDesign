@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Running Safety Plus</title>
+
     <!-- Google Map -->
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
@@ -27,6 +28,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-firestore.js"></script>
 
     <script>
         var config = {
@@ -42,13 +44,14 @@
 
 </head>
 <body>
+
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 <div id="particles-js">
-		<div class="login">
-            <div id="map"></div>
-		</div>
-   <button class="button" id="send_msg">send_msg</button> 
+    <div class="login">
+        <div id="map"></div>
+    </div>
+    <button class="button" id="send_msg">send_msg</button>
 
        <script>
                 // html web client socket
@@ -58,43 +61,18 @@
                     socket_web.emit('message', 'send_msg');
                 })
                
-            </script>
-       
-    </button>
-		<div class="sk-rotating-plane"></div>
+       </script>
 
-    <button id="outbutt"> Sign Out </button>
+    <div class="sk-rotating-plane"></div>
+
+    <!-- Sign out button-->
+    <button id="outbutt" > Sign Out </button>
+    <!-- Contacts -->
+    <button id="add" onclick="addContact()"> Add Contact </button>
+    <input type="text" id="econtact" placeholder="Emergency Contact" hidden="true"/>
+    <button id="submit" onclick="submitContact()" hidden="true"> Submit Contact </button>
 
 </div>
-
-    <!-- signout button code -->
-    <script>
-        //SignOut function
-        function signOut() {
-            firebase.auth().signOut().then(function() {
-                // Sign-out successful.
-            }).catch(function(error) {
-                // An error happened.
-            });
-        }
-        //Every page Load
-        function nextInit() {
-            firebase.auth().onAuthStateChanged(function(user) {
-                if (user) {
-                    document.getElementById('message').textContent = "Welcome!";
-                }
-                else {
-                    document.getElementById('message').textContent = "Signed Out, thank you!";
-                }
-            });
-
-            document.getElementById('outbutt').addEventListener('click', signOut, false);
-        }
-
-        window.onload = function() {
-            nextInit();
-        };
-    </script>
 
 
 <!-- Particles -->
@@ -107,15 +85,9 @@
     <script src="js/send-cong.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEgkM9JeygSHP6jSqQBsCuYdwqXF868z0&callback=initMap" async defer></script>
 
-<script>
-    //example, no actually function
-    //document.getElementById("Blue").onclick = function() {myFunction()};
 
-    //function myFunction() {
-    //    document.getElementById("Blue").innerHTML = "YOU CLICKED ME!";
-    //}
-</script>
-
+<!-- Database Script -->
+<script src="js/homepage.js"></script>
 
 </body>
 </html>
