@@ -46,6 +46,7 @@ function NewMem() {
     window.location = 'signup.html';
 }
 
+
 //Initialize application every page load
 function initApp() {
     firebase.auth().onAuthStateChanged(function(user) {

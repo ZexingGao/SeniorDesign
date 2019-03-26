@@ -22,13 +22,18 @@ function submitContact() {
         });
 }
 
+function JumpBackToLogin() {
+    window.location = 'login.html';
+}
 //SignOut function
 function signOut() {
+    document.getElementById('outbutt').addEventListener('click', JumpBackToLogin, false);
     firebase.auth().signOut().then(function() {
         // Sign-out successful.
     }).catch(function(error) {
         // An error happened.
     });
+
 }
 
 //Every page Load
