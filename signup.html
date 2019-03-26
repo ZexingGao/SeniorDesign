@@ -34,13 +34,13 @@
         </div>
         <div class="signup-center clearfix">
             <div class="signup-center-input">
-                <input id="name" type="text" name="" value="" placeholder="Name" onfocus="this.placeholder=''" onblur="this.placeholder='Name'"/>
-                <div class="signup-center-input-text">Last Name</div>
+                <input id="DeviceID" type="text" name="" value="" placeholder="DeviceID" onfocus="this.placeholder=''" onblur="this.placeholder='DeviceID'"/>
+                <div class="signup-center-input-text">Device ID</div>
             </div>
         </div>
         <div class="signup-center clearfix">
             <div class="signup-center-input">
-                <input id="username" type="text" name="" value="" placeholder="Please Enter a Username" onfocus="this.placeholder=''" onblur="this.placeholder='Please Enter a Username'"/>
+                <input id="username" type="text" name="" value="" placeholder="Please Enter Email Address" onfocus="this.placeholder=''" onblur="this.placeholder='Please Enter Email Address'"/>
                 <div class="signup-center-input-text">Username</div>
             </div>
         </div>
@@ -70,19 +70,34 @@
         var password = document.getElementById('password').value;
         //error check?
 
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-            var errorCode  = error.code;
-            var errorMessage = error.message;
+        if (email == "" || password == ""){
+            alert('Please do not leave any blank!');
+        }
+        else{
+            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+                var errorCode  = error.code;
+                var errorMessage = error.message;
+                //var errorChecker = false;
+                if(errorCode == 'auth/weak-password'){
+                    alert('Password not valid');
+                }
+                else{
+                    alert(errorMessage);
+                    //var errorChecker = false;
+                };
+                //if(Boolean(errorMessage) == false){
+                    //alert('You have successfully signed up! Now you can back to login page!')
+                //}
+                //else{
 
-            if(errorCode == 'auth/weak-password'){
-                alert('Password not valid');
-            }
-            else{
-                alert(errorMessage);
-            }
-            console.log(error);
-        });
-        alert('Successful Sign Up!')
+                //};
+                console.log(error);
+            });
+
+        };
+
+
+
     }
 
 
