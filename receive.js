@@ -38,21 +38,77 @@ const authToken = '0c26716141831599965530caea4df03d';
 var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
 
+
+
+const admin = require('firebase-admin');
+const serviceAccount = require('./running-safety-firebase-adminsdk-incdh-1536c1ed15.json');
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+});
+const db = admin.firestore();
+
+
 app.post('/sms',function(req, res){
 	console.log(req.body);
 	var msgFrom = req.body.From;
 	var msgBody = req.body.Body;
-	
-client.messages
-  .create({
-  	body: msgBody,
-  		from: '+18572148417',
-  		to: '+18572723466'
-  		})
-	 .then(message => console.log(message.sid))
-	 .done();
+    var location = msgBody.slice(70,89);//get the gps location
+    console.log("location: ", location);
+    var mynumber = '';
+    var citiesRef = db.collection('users');
+    var allCities = citiesRef.get()
+        .then(snapshot => {
+            snapshot.forEach(doc => {
+                if (doc.data().econtact == "6304926259") {
+
+                    mynumber = doc.data().econtact;
+                    client.messages
+                        .create({
+                            body: msgBody + " from " + msgFrom,
+                            from: '+18572148417',
+                            to: mynumber
+                        })
+                        .then(message => console.log(message.sid))
+                        .done();
+                }
+
+            });
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
+    
 });
 
 app.listen(1337);
+    //get number
+    /*
+    var mynumber = '';
+    var citiesRef = db.collection('users');
+    var allCities = citiesRef.get()
+        .then(snapshot => {
+            snapshot.forEach(doc => {
+                if (doc.data().econtact == "6304926259") {
 
+                    mynumber = doc.data().econtact;
 
+                }
+
+            });
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
+    client.messages
+      .create({
+          body: msgBody +" from "+ msgFrom,
+          from: '+18572148417',
+  		    to: mystring
+  		    })
+	     .then(message => console.log(message.sid))
+	     .done();
+    });
+
+app.listen(1337);
+
+*/
