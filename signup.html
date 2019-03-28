@@ -65,39 +65,40 @@
 <!-- Javascript code -->
 <script>
     //SignUp button function
+
     function SignUp() {
         var email = document.getElementById('username').value;
         var password = document.getElementById('password').value;
-        //error check?
-
+        //alert('You have successfully signed up! Now you can back to login page!');
+        var check = 0;
         if (email == "" || password == ""){
             alert('Please do not leave any blank!');
         }
         else{
+
             firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
                 var errorCode  = error.code;
                 var errorMessage = error.message;
-                //var errorChecker = false;
+                var errorChecker = false;//error check?
+
                 if(errorCode == 'auth/weak-password'){
                     alert('Password not valid');
+
                 }
                 else{
                     alert(errorMessage);
-                    //var errorChecker = false;
-                };
-                //if(Boolean(errorMessage) == false){
-                    //alert('You have successfully signed up! Now you can back to login page!')
-                //}
-                //else{
 
-                //};
-                console.log(error);
+                };
+
             });
 
-        };
+            alert('You have successfully signed up! Now you can back to login page!');
 
 
 
+                    };
+
+        //alert('You have successfully signed up! Now you can back to login page!');
     }
 
 
