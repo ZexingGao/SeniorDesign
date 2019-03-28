@@ -1,26 +1,31 @@
 var db = firebase.firestore();
 
 //Add Contacts Button
-function addContact()   {
+function register()   {
     document.getElementById('add').hidden = true;
+    document.getElementById('devicenum').hidden = false;
     document.getElementById('econtact').hidden = false;
     document.getElementById('submit').hidden = false;
 }
 
 //Write DB Data
-function submitContact() {
+function submit() {
     var contact = document.getElementById('econtact').value;
+    var devicenum = document.getElementById('devicenum').value;
     var userId = firebase.auth().currentUser.uid;
     db.collection("users").doc(userId.toString()).set({
-        econtact: contact
+        econtact: contact ,
+        device: devicenum
     })
         .then(function() {
-            alert("Submitted Contact!");
+            alert("You have successfully registered your device and Contact!");
         })
         .catch(function(error) {
             alert(error);
         });
 }
+
+
 
 function JumpBackToLogin() {
     window.location = 'login.html';
