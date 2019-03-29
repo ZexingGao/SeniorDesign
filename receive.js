@@ -51,17 +51,20 @@ const db = admin.firestore();
 app.post('/sms',function(req, res){
 	console.log(req.body);
 	var msgFrom = req.body.From;
-	var msgBody = req.body.Body;
+    var msgBody = req.body.Body;
+    var ID = msgBody[15];
     var location = msgBody.slice(70,89);//get the gps location
     console.log("location: ", location);
+    console.log("ID = ", ID);
     var mynumber = '';
     var citiesRef = db.collection('users');
     var allCities = citiesRef.get()
         .then(snapshot => {
             snapshot.forEach(doc => {
-                if (doc.data().econtact == "6304926259") {
-
+                if (doc.data().device == ID) {
+                //if (doc.data().econtact == '6304926259') {
                     mynumber = doc.data().econtact;
+                    console.log(mynumber);  
                     client.messages
                         .create({
                             body: msgBody + " from " + msgFrom,
