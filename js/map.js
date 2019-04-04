@@ -1,4 +1,3 @@
-
 var map, infoWindow;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -12,8 +11,7 @@ function initMap() {
         navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
                 lat: position.coords.latitude,
-                lng: position.coords.longitude,
-                zoom: 15
+                lng: position.coords.longitude
             };
 
             infoWindow.setPosition(pos);
@@ -29,7 +27,6 @@ function initMap() {
     }
 }
 
-//show error message
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?

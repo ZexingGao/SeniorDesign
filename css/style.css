@@ -108,9 +108,14 @@ canvas{
 .login-center-input-text{background: white;padding: 0 5px;position: absolute;z-index: 0;opacity: 0;height: 20px;top: 50%;margin-top: -10px;font-size: 14px;left: 5px;color: dodgerblue;line-height: 20px;transition: all 0.5s;-moz-transition: all 0.5s;	/* Firefox 4 */-webkit-transition: all 0.5s;	/* Safari 和 Chrome */-o-transition: all 0.5s;	/* Opera */}
 .login-center-input input:focus~.login-center-input-text{top: 0;z-index: 3;opacity: 1;margin-top: -15px;}
 .login.active{-webkit-animation: login-small 0.8s ; animation: login-small 0.8s ;animation-fill-mode:forwards;-webkit-animation-fill-mode:forwards}
-.login-button{cursor: pointer;width: 250px;text-align: center;height: 40px;line-height: 20px;background-color: dodgerblue;border-radius: 5px;margin: 0 auto;margin-top: 50px;color: white;}
+.login-button{cursor: pointer;text-align: center;border-radius: 5px;
+    margin: 50px auto 0;
+    color: white;}
+.login-button-backup-notusing{cursor: pointer;width: 250px;text-align: center;height: 40px;line-height: 20px;background-color: dodgerblue;border-radius: 5px;margin: 0 auto;margin-top: 50px;color: white;}
 
-.newmember-button{cursor: pointer;width: 250px;text-align: center;height: 40px;line-height: 20px;background-color: dodgerblue;border-radius: 5px;margin: 0 auto;margin-top: 50px;color: white;}
+.newmember-button{cursor: pointer;text-align: center;border-radius: 5px;
+    margin: 50px auto 0;
+    color: white;}
 
 .pick-top{font-size: 24px;margin-top: 50px;padding-left: 40px;box-sizing: border-box;color: #333333;margin-bottom: 50px;}
 .pick-center{width: 100%;box-sizing: border-box;padding: 0 40px;margin-bottom: 30px;}
@@ -125,6 +130,7 @@ canvas{
 .signup-center-input input:focus{border: 1px solid dodgerblue;}
 .signup-center-input-text{background: white;padding: 0 5px;position: absolute;z-index: 0;opacity: 0;height: 20px;top: 50%;margin-top: -10px;font-size: 14px;left: 5px;color: dodgerblue;line-height: 20px;transition: all 0.5s;-moz-transition: all 0.5s;	/* Firefox 4 */-webkit-transition: all 0.5s;	/* Safari 和 Chrome */-o-transition: all 0.5s;	/* Opera */}
 .signup-center-input input:focus~.signup-center-input-text{top: 0;z-index: 3;opacity: 1;margin-top: -15px;}
-.signup-button{cursor: pointer;width: 250px;text-align: center;height: 40px;line-height: 40px;background-color: dodgerblue;border-radius: 5px;margin: 0 auto;margin-top: 25px;color: white;}
-.signup-button{cursor: pointer;width: 250px;text-align: center;height: 40px;line-height: 40px;background-color: dodgerblue;border-radius: 5px;margin: 0 auto;margin-top: 25px;color: white;}
-.signup-button{cursor: pointer;width: 250px;text-align: center;height: 40px;line-height: 40px;background-color: dodgerblue;border-radius: 5px;margin: 0 auto;margin-top: 25px;color: white;}
+.signup-button{cursor: pointer;text-align: center;
+    margin: 25px auto 0;
+    color: white;}
+.signup-button-not-using{cursor: pointer;width: 250px;text-align: center;height: 40px;line-height: 40px;background-color: dodgerblue;border-radius: 5px;margin: 0 auto;margin-top: 25px;color: white;}
