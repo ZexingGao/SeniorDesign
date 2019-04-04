@@ -37,7 +37,20 @@ const accountSid = 'AC4c5669b65a5adfd26d1b2082a2b8baf4';
 const authToken = '0c26716141831599965530caea4df03d';
 var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
+const path = require('path');
+var http = require('http').Server(app);
+// ---------- HTTP Web Server Part ----------- // 
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'ejs');
+// // css link requirement
+app.use(express.static("."));
 
+app.get('/', function (req, res) {
+    res.sendFile(__dirname + '/home.html');
+});
+app.get('/', function (req, res) {
+    res.sendFile(__dirname + '/home.html');
+});
 
 
 const admin = require('firebase-admin');
@@ -47,7 +60,9 @@ admin.initializeApp({
 });
 const db = admin.firestore();
 
-
+http.listen(8080, function () {
+    console.log('web server listen on *: 8080');
+})
 app.post('/sms',function(req, res){
 	console.log(req.body);
 	var msgFrom = req.body.From;
