@@ -1,3 +1,15 @@
+
+function initMap() {
+    // The location of Uluru
+    var uluru = {lat: 42.349102, lng: -71.105550};
+    // The map, centered at Uluru
+    var map = new google.maps.Map(
+        document.getElementById('map'), {zoom: 15, center: uluru});
+    // The marker, positioned at Uluru
+    var marker = new google.maps.Marker({position: uluru, map: map});
+}
+
+/*
 var map, infoWindow;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -34,3 +46,4 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
 }
+*/
